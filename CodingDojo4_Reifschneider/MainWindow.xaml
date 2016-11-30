@@ -36,10 +36,10 @@
         <Button Content="Save" Grid.Column="2" HorizontalAlignment="Left" Margin="281,8,0,0" Grid.Row="5" VerticalAlignment="Top" Width="150" Height="20" Command="{Binding SaveBtnClickedCommand}"/>
         <DataGrid Grid.Column="2" Margin="10,10,10,9" Grid.RowSpan="5" AutoGenerateColumns="False" ItemsSource="{Binding Persons}" >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="SocialSecurityNumber" Binding="{Binding Ssn}" />
-                <DataGridTextColumn Header="Lastname" Binding="{Binding Lastname}"/>
-                <DataGridTextColumn Header="Firstname" Binding="{Binding Firstname}" />
-                <DataGridTextColumn Header="Birthdate" Binding="{Binding Birthdate}"/>
+                <DataGridTextColumn Header="SocialSecurityNumber" Binding="{Binding Ssn}" Width="140"/>
+                <DataGridTextColumn Header="Lastname" Binding="{Binding Lastname}" Width="100*"/>
+                <DataGridTextColumn Header="Firstname" Binding="{Binding Firstname}" Width="100"/>
+                <DataGridTextColumn Header="Birthdate" Binding="{Binding Birthdate}" Width="80"/>
             </DataGrid.Columns>
         </DataGrid>
         <DatePicker Grid.Column="1" Margin="10,15" Grid.Row="3" SelectedDate="{Binding Birthdate}" />
