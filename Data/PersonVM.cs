@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CodingDojo4_Reifschneider.ViewModel
+namespace Data
 {
     public class PersonVM
     {
