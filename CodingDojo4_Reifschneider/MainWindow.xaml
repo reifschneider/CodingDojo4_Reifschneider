@@ -31,7 +31,7 @@
         <TextBox Grid.Column="1" Margin="10,20" TextWrapping="Wrap" Text="{Binding Firstname}"/>
         <TextBox Grid.Column="1" Grid.Row="1" Margin="10,20" TextWrapping="Wrap" Text="{Binding Lastname}"  />
         <TextBox Grid.Column="1" Grid.Row="2" Margin="10,20" TextWrapping="Wrap" Text="{Binding Ssn}"/>
-        <Button Content="Add" Grid.Column="1" HorizontalAlignment="Left" Margin="53,8,0,0" Grid.Row="5" VerticalAlignment="Top" Width="75" Height="20" Command="{Binding AddBtnClickedCommand}" />
+        <Button Content="Add" Grid.Column="1" HorizontalAlignment="Left" Margin="53,8,0,0" Grid.Row="5" VerticalAlignment="Top" Width="75" Height="20" Command="{Binding AddBtnClickedCommand}"  />
         <Button Content="Load" Grid.Column="2" HorizontalAlignment="Left" Margin="108,8,0,0" Grid.Row="5" VerticalAlignment="Top" Width="150" Height="20" Command="{Binding LoadBtnClickedCommand}"/>
         <Button Content="Save" Grid.Column="2" HorizontalAlignment="Left" Margin="281,8,0,0" Grid.Row="5" VerticalAlignment="Top" Width="150" Height="20" Command="{Binding SaveBtnClickedCommand}"/>
         <DataGrid Grid.Column="2" Margin="10,10,10,9" Grid.RowSpan="5" AutoGenerateColumns="False" ItemsSource="{Binding Persons}" >

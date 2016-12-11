@@ -9,7 +9,6 @@ namespace Data
 {
     public class Methods
     {
-
         string path = @"C:\Users\Nadja\Documents\Dojo4.txt";
 
         public Methods()
@@ -17,10 +16,9 @@ namespace Data
 
         }
 
-        public List<PersonVM> Load()
+        public List<Person> Load()
         {
-
-            List<PersonVM> list = new List<PersonVM>();
+            List<Person> list = new List<Person>();
 
             if (File.Exists(path))
             {
@@ -28,15 +26,15 @@ namespace Data
                 foreach (string line in lines)
                 {
                     var values = line.Split(';');
-                    int number = int.Parse(values[2]);
-                    list.Add(new PersonVM(values[0], values[1], number, values[3]));
+                    long number = long.Parse(values[2]);
+                    list.Add(new Person(values[0], values[1], number, values[3]));
                 }
             }
 
             return list;
 
         }
-        public void Save(List<PersonVM> list)
+        public void Save(List<Person> list)
         {
             if(File.Exists(path))
             {
@@ -45,7 +43,7 @@ namespace Data
             
             StreamWriter file = new StreamWriter(path);
             {
-                foreach (PersonVM p in list)
+                foreach (Person p in list)
                 {
                     file.WriteLine(p.Firstname + ";" + p.Lastname + ";" + p.Ssn + ";" + p.Birthdate);
                 }

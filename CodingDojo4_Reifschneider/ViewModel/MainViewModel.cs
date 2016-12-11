@@ -1,5 +1,5 @@
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.CommandWpf;
 using System;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -12,11 +12,19 @@ namespace CodingDojo4_Reifschneider.ViewModel
     public class MainViewModel : ViewModelBase
     {
 
-        string firstname ="";
-        string lastname ="";
-        long ssn;
-        DateTime birthdate = DateTime.Today;
-        Methods m;
+        private string firstname ="";
+        private string lastname ="";
+        private long ssn;
+        private DateTime birthdate = DateTime.Today;
+        private Methods m;
+
+
+        private ObservableCollection<PersonVM> persons = new ObservableCollection<PersonVM>();
+        private RelayCommand addBtnClickedCommand;
+        private RelayCommand saveBtnClickedCommand;
+        private RelayCommand loadBtnClickedCommand;
+
+        private bool checkLastname;
 
 
         public string Firstname
@@ -71,12 +79,6 @@ namespace CodingDojo4_Reifschneider.ViewModel
             }
         }
 
-
-        ObservableCollection<PersonVM> persons = new ObservableCollection<PersonVM>();
-        private RelayCommand addBtnClickedCommand;
-        private RelayCommand saveBtnClickedCommand;
-        private RelayCommand loadBtnClickedCommand;
-
         public ObservableCollection<PersonVM> Persons
         {
             get
@@ -129,31 +131,44 @@ namespace CodingDojo4_Reifschneider.ViewModel
             }
         }
 
+        public bool CheckLastname
+        {
+            get
+            {
+                return checkLastname;
+            }
+
+            set
+            {
+                checkLastname = value;
+            }
+        }
 
         public MainViewModel()
         {
             m = new Methods();
+            //AddBtnClickedCommand = new RelayCommand(new Action(Add), new Func<bool>(CheckLN));
             AddBtnClickedCommand = new RelayCommand(Add, CheckLN);
-            SaveBtnClickedCommand = new RelayCommand(SavePersons, () => { return persons.Count > 0; });
-            LoadBtnClickedCommand = new RelayCommand(LoadPersons);
+            SaveBtnClickedCommand = new RelayCommand(SavePersons, () => { return Persons.Count > 0; });
+            LoadBtnClickedCommand = new RelayCommand(LoadPersons, () => { return File.Exists(@"C:\Users\Nadja\Documents\Dojo4.txt"); });
         }
 
 
         private void LoadPersons()
         {
-            persons.Clear();
-            foreach(PersonVM p in m.Load())
+            Persons.Clear();
+            foreach(Person p in m.Load())
             {
-                persons.Add(p);
+                Persons.Add(new PersonVM(p.Firstname,p.Lastname,p.Ssn, p.Birthdate));
             }
         }
 
         private void SavePersons()
         {
-            List<PersonVM> personList = new List<PersonVM>();
-            foreach (PersonVM p in persons)
+            List<Person> personList = new List<Person>();
+            foreach (PersonVM p in Persons)
             {
-                personList.Add(p);
+                personList.Add(new Person(p.Firstname, p.Lastname, p.Ssn, p.Birthdate));
             }
             m.Save(personList);
         }
@@ -166,15 +181,7 @@ namespace CodingDojo4_Reifschneider.ViewModel
 
         public bool CheckLN()
         {
-            if (lastname.Length >= 2)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-
+            return Lastname.Length >= 2;
         }
 
         /*

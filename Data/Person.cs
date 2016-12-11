@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Data
 {
-    public class PersonVM
+    public class Person
     {
-        string firstname;
-        string lastname;
-        long ssn;
-        string birthdate;
+        private string firstname;
+        private string lastname;
+        private long ssn;
+        private string birthdate;
 
         public string Firstname
         {
@@ -65,7 +65,7 @@ namespace Data
             }
         }
 
-        public PersonVM(string firstname, string lastname, long ssn, string birthdate)
+        public Person(string firstname, string lastname, long ssn, string birthdate)
         {
             this.Firstname = firstname;
             this.Lastname = lastname;
