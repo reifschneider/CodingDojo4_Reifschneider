@@ -9,7 +9,7 @@ namespace Data
 {
     public class Methods
     {
-        string path = @"C:\Users\Nadja\Documents\Dojo4.txt";
+        string path = @"Dojo4.csv";
 
         public Methods()
         {

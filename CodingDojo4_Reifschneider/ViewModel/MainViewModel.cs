@@ -15,7 +15,7 @@ namespace CodingDojo4_Reifschneider.ViewModel
         private string firstname ="";
         private string lastname ="";
         private long ssn;
-        private DateTime birthdate = DateTime.Today;
+        private DateTime birthdate = new DateTime(1980,1,1);
         private Methods m;
 
 
@@ -150,7 +150,7 @@ namespace CodingDojo4_Reifschneider.ViewModel
             //AddBtnClickedCommand = new RelayCommand(new Action(Add), new Func<bool>(CheckLN));
             AddBtnClickedCommand = new RelayCommand(Add, CheckLN);
             SaveBtnClickedCommand = new RelayCommand(SavePersons, () => { return Persons.Count > 0; });
-            LoadBtnClickedCommand = new RelayCommand(LoadPersons, () => { return File.Exists(@"C:\Users\Nadja\Documents\Dojo4.txt"); });
+            LoadBtnClickedCommand = new RelayCommand(LoadPersons, () => { return File.Exists(@"Dojo4.csv"); });
         }
 
 
@@ -181,7 +181,7 @@ namespace CodingDojo4_Reifschneider.ViewModel
 
         public bool CheckLN()
         {
-            return Lastname.Length >= 2;
+            return Lastname.Length > 2;
         }
 
         /*
